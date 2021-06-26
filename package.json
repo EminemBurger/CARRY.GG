@@ -20,7 +20,9 @@
     "url": "https://github.com/EminemBurger/CARRY.GG/issues"
   },
   "homepage": "https://github.com/EminemBurger/CARRY.GG#readme",
-  "devDependencies": {
-    "concurrently": "6.2.0"
+  "devDependencies": {},
+  "dependencies": {
+    "concurrently": "6.2.0",
+    "nodemon": "2.0.7"
   }
 }
