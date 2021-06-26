@@ -8,4 +8,6 @@ app.get('/', function(req,res) {
 	res.sendFile(__dirname, + '/index.html');
 });
 
-app.listen(3000, () => console.log("Server is running!"));
+const port = process.env.client_port || 3000;
+
+app.listen(port, () => console.log("Server is running!"));

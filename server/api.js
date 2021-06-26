@@ -14,5 +14,6 @@ app.use(bodyparser.urlencoded({
 
 app.use('/champion', championsRoute);
 
+const port = process.env.server_port || 4000;
 
-app.listen(4000, () => console.log('server is running!'));
+app.listen(port, () => console.log('server is running!'));
