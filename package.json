@@ -1,0 +1,26 @@
+{
+  "name": "carry.gg",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prefix_client": "cd client && npm start",
+    "prefix_server": "cd server && npm start",
+    "start": "concurrently --kill-others \"npm run prefix_client\" \"npm run prefix_server\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EminemBurger/CARRY.GG.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EminemBurger/CARRY.GG/issues"
+  },
+  "homepage": "https://github.com/EminemBurger/CARRY.GG#readme",
+  "devDependencies": {
+    "concurrently": "6.2.0"
+  }
+}
