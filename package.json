@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "preinstall_client": "cd client && npm install",
-    "preinstall_server": "cd server && npm instll",
+    "preinstall_server": "cd server && npm install",
     "prefix_client": "cd client && npm start",
     "prefix_server": "cd server && npm start",
     "start": "concurrently --kill-others \"npm run preinstall_client\" \"npm run preinstall_client\" \"npm run prefix_client\" \"npm run prefix_server\"",
