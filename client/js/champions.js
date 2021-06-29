@@ -44,13 +44,23 @@ function ChampionDeploy(data) {
 
 
 
-fetch('http://localhost:4000/champion', {
+fetch('http://localhost:8081/champion', {
     method: 'GET'
 })
   .then(response => response.json())
   .then(function(data) {
         ChampionDeploy(data);
   })
-  .catch(error =>  console.log(error)); 
+  .catch(function() {
+
+    fetch('http://localhost:4000/champion', {
+      method: 'GET'
+    })
+      .then(response => response.json())
+      .then(function (data) {
+        ChampionDeploy(data);
+      })
+      .catch(error => console.log(error));
+  });
 /* champion asset */
 
