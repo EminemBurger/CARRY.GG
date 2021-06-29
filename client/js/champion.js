@@ -74,7 +74,7 @@ function ChampionAsset(data) {
 }
 
 
-fetch('http://localhost:8081/champion', {
+fetch('http://carrygg-env-1.eba-e26mm6jp.ap-northeast-2.elasticbeanstalk.com/champion', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
@@ -87,24 +87,7 @@ fetch('http://localhost:8081/champion', {
       ChampionRole(data);
       ChampionAsset(data);
   })
-  .catch(function() {
-    fetch('http://localhost:4000/champion', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-            "name": sessionStorage.getItem('name')
-        })    
-    })
-      .then(response => response.json())
-      .then(function(data) {
-          ChampionsStat(data);
-          ChampionRole(data);
-          ChampionAsset(data);
-      })
-      .catch(error => console.log(error))
-  }); 
-
-
+  .catch(error =>  console.log(error)); 
 
 
 

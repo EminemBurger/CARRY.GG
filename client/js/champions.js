@@ -44,23 +44,13 @@ function ChampionDeploy(data) {
 
 
 
-fetch('http://localhost:8081/champion', {
+fetch('http://carrygg-env-1.eba-e26mm6jp.ap-northeast-2.elasticbeanstalk.com/champion', {
     method: 'GET'
 })
   .then(response => response.json())
   .then(function(data) {
         ChampionDeploy(data);
   })
-  .catch(function() {
-
-    fetch('http://localhost:4000/champion', {
-      method: 'GET'
-    })
-      .then(response => response.json())
-      .then(function (data) {
-        ChampionDeploy(data);
-      })
-      .catch(error => console.log(error));
-  });
+  .catch(error =>  console.log(error)); 
 /* champion asset */
 
