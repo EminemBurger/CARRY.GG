@@ -44,7 +44,7 @@ function ChampionDeploy(data) {
 
 
 
-fetch('http://carrygg-env-1.eba-e26mm6jp.ap-northeast-2.elasticbeanstalk.com/champion', {
+fetch('http://carrygg-env-1.eba-e26mm6jp.ap-northeast-2.elasticbeanstalk.com:8081/champion', {
     method: 'GET'
 })
   .then(response => response.json())
