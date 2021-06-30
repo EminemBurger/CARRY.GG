@@ -5,6 +5,11 @@ const cors = require('cors');
 const championsRoute = require('./routes/champion');
 
 
+app.get('/', (req, res) => {
+    res.send('Hello World!')
+})
+  
+
 app.use(cors());
 
 app.use(bodyparser.json());
