@@ -74,7 +74,7 @@ function ChampionAsset(data) {
 }
 
 
-fetch('http://carrygg-env-1.eba-e26mm6jp.ap-northeast-2.elasticbeanstalk.com:80/champion', {
+fetch('http://carrygg-env-1.eba-e26mm6jp.ap-northeast-2.elasticbeanstalk.com:8081/champion', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
