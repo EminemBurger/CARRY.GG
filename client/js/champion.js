@@ -65,6 +65,8 @@ function ChampionRole(data) {
 function ChampionAsset(data) {
     const champion = document.querySelector('.section-1-content-header img');
     champion.style.background = `url('http://ddragon.leagueoflegends.com/cdn/11.13.1/img/champion/${data.id}.png')`;
+    champion.style.backgroundPosition = 'center center';
+    champion.style.backgroundSize = 'cover';
 
     const back_ground = document.querySelector('.section-1');
     back_ground.style.background = `linear-gradient(180deg, hsla(0, 1%, 30%, 0.219), #030303, #030303 ,#030303), 
