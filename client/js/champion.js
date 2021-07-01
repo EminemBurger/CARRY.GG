@@ -71,6 +71,12 @@ function ChampionAsset(data) {
     url('http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${data.id}_0.jpg') center center no-repeat`;
     back_ground.style.backgroundSize = 'cover';
 
+    const champion_name = document.querySelector('.section-1-content-header-banner h1');
+    const champion_des = document.querySelector('.section-1-content-header-banner p');
+
+    champion_name.innerHTML = data.name;
+    champion_des.innerHTML = data.title;
+
 }
 
 
