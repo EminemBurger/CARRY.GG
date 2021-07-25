@@ -3,6 +3,7 @@ const app = express();
 const bodyparser = require('body-parser');
 const cors = require('cors');
 const championsRoute = require('./routes/champion');
+const summonersRoute = require('./routes/summoners');
 
 
 app.use(cors());
@@ -13,6 +14,7 @@ app.use(bodyparser.urlencoded({
 }));
 
 app.use('/champion', championsRoute);
+app.use('/summoner' , summonersRoute);
 
 const port = process.env.server_port || 4000;
 

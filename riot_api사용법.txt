@@ -1,0 +1,33 @@
+LEAGUE-V4 에 들어가면 챌린저, 그마, 마스터, 브실골플다 티어별로 속한 소환사들이 정보를 가져올 수 있다.
+
+응답 body에서 암호화된 소환사의 id를 summonerId라는 속성으로 가져온다
+
+SUMMONER-V4에서 /lol/summoner/v4/summoners/{encryptedSummonerId} 요청으로 가져온 id를 param로 넣는다.
+
+이 요청으로 소환사 이름 ex)나는즐겜유저에요 puuid, 프로필 사진, 소환사 레벨을 알 수 있다.
+
+응답 body에서 accountId라는 속성을 가져온다
+
+MATCH-V4에 /lol/match/v4/matchlists/by-account/{encryptedAccountId} 요청으로 가져온 accountid를 param로 넣는다
+
+이 요청으로 몇 시즌에 치뤄진 매치인지, 라인은 어디인지, 큐(소환사의 협곡인지, 칼바람인지), 해당 매치에서 사용한 챔피언을 알 수 있다.
+
+응답 body에서 gameId라는 속성을 가져온다
+
+MATCH-V4에 /lol/match/v4/matches/{matchId} 요청으로 가져온 gameid를 param로 넣는다
+
+이 요청으로 경기에서 이겼는지, KDA, 멀티킬 여부, 딜량, 골드 거의 모든 것을 가져올 수 있다.
+
+응답 body에서 해당 경기에 관한 모든 내용을 얻을 수 있다.
+
+
+티어 이미지는 API Docs를 참고하자
+
+아이템 역시 마찬가지
+
+
+
+
+
+SUMMONER-V4에서 /lol/summoner/v4/summoners/by-name/{summonerName} 요청으로 소환사 정보를 가져오자
+

@@ -144,6 +144,7 @@
     padding-left: 25rem;
     padding-right: 25rem;
     padding-top: 10rem;
+    padding-bottom: 10rem;
 }
 
 .section-1-content-header {
@@ -289,6 +290,10 @@ table.type09 td {
               padding-left: 15rem;
               padding-right: 15rem;
           }
+
+          .section-1 {
+            height: auto;
+          }
       }
 
 
@@ -297,6 +302,8 @@ table.type09 td {
           width: 40rem;
           height: 30rem;
         }
+
+
 
       }
 
