@@ -56,40 +56,24 @@ const elementInView = (el, dividend = 1) => {
 
 
 
-// section 1의 배경화면 별 반짝임 애니메이션
+// 소환사 전적 검색 시
+const sum_input = document.querySelector('.section-1-input input');
+const sum_btn = document.querySelector('.section-1-input a');
+sum_btn.addEventListener("click", () => {
+	sessionStorage.setItem("summoner", sum_input.value);
+})
 
 
-	// let sky = document.querySelector(".section-1-img");
-	// let sky_style = getComputedStyle(sky);
+
+// 소환사 전적 검색 시
 
 
-    // var iterator = 0;
-    
+// 전적 검색시 Enter 인식
+sum_input.addEventListener('keyup', function(e) {
+	if (e.keyCode === 13) {
+		sessionStorage.setItem("summoner", sum_input.value);
+		window.location.href = "summoner.html";
+	}
+});
 
-    // while (iterator <= 100){
-
-    //     var xposition = Math.random();
-    //     var yposition = Math.random();
-    //     var star_type = Math.floor((Math.random() * 3) + 1);
-    //     var position = {
-    //         "x" : parseInt(sky_style.width) * xposition,
-    //         "y" : parseInt(sky_style.height) * yposition,
-    //     };
-
-	
-
-	// 	var star = document.createElement('DIV');
-
-
-	// 	star.classList.add("star");
-	// 	star.classList.add("star-type" + star_type);
-
-	// 	star.style.top = position.y + 'px';
-	// 	star.style.left = position.x + 'px';
-
-	// 	sky.appendChild(star);
-
-    //     iterator++;
-    // }
-    
-// section 1의 배경화면 별 반짝임 애니메이션
+//

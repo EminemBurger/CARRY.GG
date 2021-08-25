@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const riotKey = 'api_key=RGAPI-4880a59f-5b55-48da-9e23-1c369eccfbfa';
 const axios = require('axios');
 
 /*
@@ -50,6 +49,7 @@ router.post('/', async (req, res) => {
         });
 
 });
+
 
 
 module.exports = router;

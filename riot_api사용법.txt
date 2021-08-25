@@ -31,3 +31,9 @@ MATCH-V4에 /lol/match/v4/matches/{matchId} 요청으로 가져온 gameid를 par
 
 SUMMONER-V4에서 /lol/summoner/v4/summoners/by-name/{summonerName} 요청으로 소환사 정보를 가져오자
 
+/lol/league/v4/entries/by-summoner/{encryptedSummonerId} 요청으로 티어, 승패, 리그 포인트, 소속되어있는 리그를 가져오자
+
+
+
+https://shyunku.tistory.com/56 룬페이지 구현
+

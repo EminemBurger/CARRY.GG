@@ -237,7 +237,7 @@
     padding-right: 6rem;
   }
 
-.section-1-input button {
+.section-1-input a {
     position: absolute;
     right: 0.3rem;
     top: 0.2rem;
@@ -250,7 +250,7 @@
     padding: 0.3rem;
   }
 
-  .section-1-input button:hover {
+  .section-1-input a:hover {
     background-color: white;
     color: #ff2f2f;
   }
