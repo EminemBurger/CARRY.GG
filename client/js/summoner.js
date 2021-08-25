@@ -421,7 +421,7 @@ async function GetChampionData() {
 }
 
 async function GetRuneData() {
-    await fetch('http://carrygg-env-1.eba-e26mm6jp.ap-northeast-2.elasticbeanstalk.com:8081/summoner/rune', {
+    await fetch('http://carrygg-env-1.eba-e26mm6jp.ap-northeast-2.elasticbeanstalk.com:8081/rune', {
         method: 'GET',
         headers: {'Content-Type': 'application/json'},
 
