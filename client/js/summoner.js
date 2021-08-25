@@ -73,7 +73,7 @@ function SummonerTierLp(data) {
 }
 
 function GetLeagueData(data) {
-    fetch('http://localhost:4000/summoner/league', {
+    fetch('http://carrygg-env-1.eba-e26mm6jp.ap-northeast-2.elasticbeanstalk.com:8081/summoner/league', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -345,7 +345,7 @@ function MakeMatchButton() {
 }*/
 
 async function GetMatchData(data) {
-    await fetch('http://carrygg-env-1.eba-e26mm6jp.ap-northeast-2.elasticbeanstalk.com:8081/match', {
+    await fetch('http://carrygg-env-1.eba-e26mm6jp.ap-northeast-2.elasticbeanstalk.com:8081/summoner/match', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -362,7 +362,7 @@ async function GetMatchData(data) {
 }
 
 async function GetGameData(data, idx) {
-    await fetch('http://carrygg-env-1.eba-e26mm6jp.ap-northeast-2.elasticbeanstalk.com:8081/info', {
+    await fetch('http://carrygg-env-1.eba-e26mm6jp.ap-northeast-2.elasticbeanstalk.com:8081/summoner/info', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -389,7 +389,7 @@ async function GetGameData(data, idx) {
 }
 
 async function GetSummonerData() {
-    await fetch('http://carrygg-env-1.eba-e26mm6jp.ap-northeast-2.elasticbeanstalk.com:8081/profile', {
+    await fetch('http://carrygg-env-1.eba-e26mm6jp.ap-northeast-2.elasticbeanstalk.com:8081/summoner/profile', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -421,7 +421,7 @@ async function GetChampionData() {
 }
 
 async function GetRuneData() {
-    await fetch('http://carrygg-env-1.eba-e26mm6jp.ap-northeast-2.elasticbeanstalk.com:8081/rune', {
+    await fetch('http://carrygg-env-1.eba-e26mm6jp.ap-northeast-2.elasticbeanstalk.com:8081/summoner/rune', {
         method: 'GET',
         headers: {'Content-Type': 'application/json'},
 
