@@ -72,22 +72,6 @@ function SummonerTierLp(data) {
     lp.innerHTML = data + " LP";
 }
 
-function GetLeagueData(data) {
-    fetch('http://carrygg-env-1.eba-e26mm6jp.ap-northeast-2.elasticbeanstalk.com:8081/summoner/league', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-            "encrypted_id": data
-        })  
-    })
-    .then(response => response.json())
-    .then(function(data) {
-            SummonerTier(data.summoner_tier, data.summoner_rank);
-            SummonerTierLp(data.summoner_league_point);
-            
-    })
-    .catch(error =>  console.log(error)); 
-}
 
 function MakeMatches(data) {
     const Matches_div = document.querySelector('.section-2');
@@ -403,6 +387,23 @@ async function GetSummonerData() {
             SummonerName(data.summoner_name);
             SummonerProfile(data.summoner_profile);
             SummonerLevel(data.summoner_level);
+    })
+    .catch(error =>  console.log(error)); 
+}
+
+async function GetLeagueData(data) {
+    await fetch('http://carrygg-env-1.eba-e26mm6jp.ap-northeast-2.elasticbeanstalk.com:8081/summoner/league', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            "encrypted_id": data
+        })  
+    })
+    .then(response => response.json())
+    .then(function(data) {
+            SummonerTier(data.summoner_tier, data.summoner_rank);
+            SummonerTierLp(data.summoner_league_point);
+            
     })
     .catch(error =>  console.log(error)); 
 }
