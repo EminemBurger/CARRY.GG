@@ -435,9 +435,9 @@ async function GetRuneData() {
 }
 
 window.onload = function() {
-    GetSummonerData();
     GetChampionData();
     GetRuneData();
+    GetSummonerData();
 
     startindex = 0;    
 }
