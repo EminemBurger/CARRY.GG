@@ -59,7 +59,6 @@ function SummonerTier(tier, rank) {
     const tier_div = document.querySelector(".section-1-rank-emblem");
     tier_div.style.background = `url(http://carrygg-env-1.eba-e26mm6jp.ap-northeast-2.elasticbeanstalk.com/asset/ranked-emblems/Emblem_${tier}.png) center center / cover`;
     const rank_tier = document.querySelector(".section-1-rank-tier");
-    
     rank_tier.innerHTML = tier + " " + rank;
 }
 
