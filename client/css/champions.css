@@ -207,7 +207,7 @@
       align-items: center;
       transform: rotateY(180deg);
       border-radius: 1rem;
-      background-color: brown;
+      background: url('../asset/CARDBACK.png') center center / cover;
   }
 
 
