@@ -185,7 +185,7 @@
     transition: opacity, 0.8s;
   }
 
-  .section-1-card:hover .section-1-card-front {
+  .section-1-card:hover .section-1-card-front .section-1-card-back {
       background-color: initial;
   }
 
@@ -208,8 +208,9 @@
       transform: rotateY(180deg);
       border-radius: 1rem;
       background: url('../asset/CARDBACK.png') center center / cover;
+      background-color: rgba(49, 46, 46, 0.973);
+      opacity: 0.6;
   }
-
 
   
     /* section 1 */
