@@ -185,10 +185,13 @@
     transition: opacity, 0.8s;
   }
 
-  .section-1-card:hover .section-1-card-front .section-1-card-back {
+  .section-1-card:hover .section-1-card-front {
       background-color: initial;
   }
 
+  .section-1-card:hover .section-1-card-back {
+    background-color: initial;
+  }
   .section-1-card:hover .section-1-card-front h1 {
       opacity: 1;
   }
