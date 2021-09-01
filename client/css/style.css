@@ -75,6 +75,7 @@
   
   .navbar-link:hover {
     color: #fff;
+    cursor: pointer;
   }
   
   .navbar-link i {
