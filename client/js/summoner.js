@@ -329,7 +329,7 @@ function MakeMatchButton() {
 }*/
 
 async function GetMatchData(data) {
-    await fetch('http://carrygg-env-1.eba-e26mm6jp.ap-northeast-2.elasticbeanstalk.com:8081/summoner/match', {
+    await fetch('https://www.dlord.shop:8081/summoner/match', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -346,7 +346,7 @@ async function GetMatchData(data) {
 }
 
 async function GetGameData(data, idx) {
-    await fetch('http://carrygg-env-1.eba-e26mm6jp.ap-northeast-2.elasticbeanstalk.com:8081/summoner/info', {
+    await fetch('https://www.dlord.shop:8081/summoner/info', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -373,7 +373,7 @@ async function GetGameData(data, idx) {
 }
 
 async function GetSummonerData() {
-    await fetch('http://carrygg-env-1.eba-e26mm6jp.ap-northeast-2.elasticbeanstalk.com:8081/summoner/profile', {
+    await fetch('https://www.dlord.shop:8081/summoner/profile', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -392,7 +392,7 @@ async function GetSummonerData() {
 }
 
 async function GetLeagueData(data) {
-    await fetch('http://carrygg-env-1.eba-e26mm6jp.ap-northeast-2.elasticbeanstalk.com:8081/summoner/league', {
+    await fetch('https://www.dlord.shop:8081/summoner/league', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -409,7 +409,7 @@ async function GetLeagueData(data) {
 }
 
 async function GetChampionData() {
-    await fetch('http://carrygg-env-1.eba-e26mm6jp.ap-northeast-2.elasticbeanstalk.com:8081/champion', {
+    await fetch('https://www.dlord.shop:8081/champion', {
         method: 'GET',
         headers: {'Content-Type': 'application/json'},
 
@@ -422,7 +422,7 @@ async function GetChampionData() {
 }
 
 async function GetRuneData() {
-    await fetch('http://carrygg-env-1.eba-e26mm6jp.ap-northeast-2.elasticbeanstalk.com:8081/rune', {
+    await fetch('https://www.dlord.shop:8081/rune', {
         method: 'GET',
         headers: {'Content-Type': 'application/json'},
 
