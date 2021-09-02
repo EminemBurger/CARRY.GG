@@ -45,7 +45,7 @@ function ChampionDeploy(data) {
 
 
 
-fetch('https://dlord.shop:8081/champion', {
+fetch('https://www.dlord.shop:8081/champion', {
     method: 'GET'
 })
   .then(response => response.json())
