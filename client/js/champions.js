@@ -1,57 +1,74 @@
-// swipper effet
-
-var swiper = new Swiper(".mySwiper", {
-  effect: "coverflow",
-  grabCursor: true,
-  centeredSlides: true,
-  slidesPerView: "auto",
-  spaceBetween: 40,
-  initialSlide: 3,
-  coverflowEffect: {
-    rotate: 33,
-    stretch: 0,
-    depth: 100,
-    modifier: 1,
-    slideShadows: true,
-  },
-});
+    // swipper effet
 
 
-// swipper effect
+function SectionDiv() {
+  const section_div = document.createElement("section");
+  section_div.classList.add("champion-section");
+  return section_div;
+}
+
+function Container_append(obj) {
+  const container = document.querySelector(".container");
+  container.appendChild(obj);
+}
+
+function MakeCard() {
+  const Card = document.createElement("div");
+  Card.classList.add("champion-card");
+  return Card;
+}
+
+function MakeH1(name) {
+  const h1_element = document.createElement("h1");
+  h1_element.innerHTML = name;
+  return h1_element;
+}
+
+function MakeChampEvent(card, name) {
+  card.addEventListener("click", () => {
+    window.location.href = "champion.html";
+    sessionStorage.setItem('name', name);
+  });
+}
+
+function DisplayCards(data) {
+  
+  const champion_name = Object.keys(data);
+  var i = 0;
+  
+  while (i < champion_name.length) {
+    
+    const Section = SectionDiv();
+
+    for (var j = 0; j < 4; j++, i++) {
+      if (champion_name.length <= i)
+        break;
+      const Card = MakeCard();
+      Card.style.backgroundImage = `url('http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${champion_name[i]}_0.jpg')`;
+      
+      const h1_element = MakeH1(data[champion_name[i]].name);
+      Card.appendChild(h1_element);
+      MakeChampEvent(Card, champion_name[i]);
+      Section.append(Card);
+      Container_append(Section);
+    }
+  }
+}
 
 
-/* champion asset */
 
-function ChampionDeploy(data) {
-
-  const dd = Object.keys(data);
-
-  const champions = document.querySelectorAll('.section-1-card');
-
-  for (var i = 0; i < champions.length; i++) {
-    (function (i) {
-      var j = i;
-      champions[j].addEventListener("click", () => {
-        window.location.href = "champion.html";
-        sessionStorage.setItem('name', dd[j]);
-      });
-    })(i);
-
-    champions[i].style.backgroundImage = `url('http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${dd[i]}_0.jpg')`;
-    champions[i].firstElementChild.firstElementChild.innerHTML = data[dd[i]].name;
-  };
-
-};
-
-
-
-fetch('https://www.dlord.shop:8081/champion', {
-    method: 'GET'
-})
-  .then(response => response.json())
-  .then(function(data) {
-        ChampionDeploy(data);
+function GetChampionName() {
+  fetch('https://www.dlord.shop:8081/champion', {
+      method: 'GET'
   })
-  .catch(error =>  console.log(error)); 
-/* champion asset */
+    .then(response => response.json())
+    .then(function(data) {
+      DisplayCards(data);
+    })
+    .catch(error =>  console.log(error)); 
+  /* champion asset */
+}
 
+window.onload = function() {
+  GetChampionName();
+};

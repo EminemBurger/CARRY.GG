@@ -329,7 +329,7 @@ function MakeMatchButton() {
 }*/
 
 async function GetMatchData(data) {
-    await fetch('https://www.dlord.shop:8081/summoner/match', {
+    const MatchData = await fetch('https://www.dlord.shop:8081/summoner/match', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -338,15 +338,17 @@ async function GetMatchData(data) {
     })
     .then(response => response.json())
     .then(function(data) {
-        MakeMatches(data.summoner_matches);
-        for (var i = startindex; i < startindex+10; i++)
-            GetGameData(data.summoner_matches[i].gameId, i);
+        return data;
     })
     .catch(error =>  console.log(error)); 
+
+    MakeMatches(MatchData.summoner_matches);
+    for (var i = startindex; i < startindex+10; i++)
+        GetGameData(MatchData.summoner_matches[i].gameId, i);
 }
 
 async function GetGameData(data, idx) {
-    await fetch('https://www.dlord.shop:8081/summoner/info', {
+    const GameData = await fetch('https://www.dlord.shop:8081/summoner/info', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -356,24 +358,27 @@ async function GetGameData(data, idx) {
     })
     .then(response => response.json())
     .then(function(data) {
-        const about_summoner = data.participants_info.stats;
-        DisplayTeam(data.team1, data.team2, idx);
-        DisplayItems(about_summoner.item0, about_summoner.item1, about_summoner.item2, about_summoner.item3, about_summoner.item4, about_summoner.item5, idx);
-        DisplayMultiKill(about_summoner.largestMultiKill, idx);
-        DisplayLvCs(about_summoner.champLevel, about_summoner.totalMinionsKilled , data.gameDuration ,idx);
-        DisplayKda(about_summoner.kills, about_summoner.deaths, about_summoner.assists, idx);
-        DisplayRune(about_summoner.perk0, about_summoner.perkSubStyle, idx);
-        DisplaySpell(data.participants_info.spell1Id, data.participants_info.spell2Id, idx);
-        DisplayChampion(data.participants_info.championId, idx);
-        DisplayGameDuration(data.gameDuration, idx);
-        DisplayWins(data.participants_info.stats.win, idx);
-        startindex += 10;
+        return data;
     })
     .catch(error =>  console.log(error)); 
+
+    const about_summoner = GameData.participants_info.stats;
+    DisplayTeam(GameData.team1, GameData.team2, idx);
+    DisplayItems(about_summoner.item0, about_summoner.item1, about_summoner.item2, about_summoner.item3, about_summoner.item4, about_summoner.item5, idx);
+    DisplayMultiKill(about_summoner.largestMultiKill, idx);
+    DisplayLvCs(about_summoner.champLevel, about_summoner.totalMinionsKilled , data.gameDuration ,idx);
+    DisplayKda(about_summoner.kills, about_summoner.deaths, about_summoner.assists, idx);
+    DisplayRune(about_summoner.perk0, about_summoner.perkSubStyle, idx);
+    DisplaySpell(GameData.participants_info.spell1Id, GameData.participants_info.spell2Id, idx);
+    DisplayChampion(GameData.participants_info.championId, idx);
+    DisplayGameDuration(GameData.gameDuration, idx);
+    DisplayWins(GameData.participants_info.stats.win, idx);
+    startindex += 10;
+
 }
 
 async function GetSummonerData() {
-    await fetch('https://www.dlord.shop:8081/summoner/profile', {
+    const SummonerData = await fetch('https://www.dlord.shop:8081/summoner/profile', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -382,17 +387,19 @@ async function GetSummonerData() {
     })
     .then(response => response.json())
     .then(function(data) {
-            GetLeagueData(data.summoner_en_id);
-            GetMatchData(data.summoner_ac_id);
-            SummonerName(data.summoner_name);
-            SummonerProfile(data.summoner_profile);
-            SummonerLevel(data.summoner_level);
+        return data;
     })
     .catch(error =>  console.log(error)); 
+
+    GetLeagueData(SummonerData.summoner_en_id);
+    GetMatchData(SummonerData.summoner_ac_id);
+    SummonerName(SummonerData.summoner_name);
+    SummonerProfile(SummonerData.summoner_profile);
+    SummonerLevel(SummonerData.summoner_level);
 }
 
 async function GetLeagueData(data) {
-    await fetch('https://www.dlord.shop:8081/summoner/league', {
+    const LeagueData = await fetch('https://www.dlord.shop:8081/summoner/league', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -401,37 +408,42 @@ async function GetLeagueData(data) {
     })
     .then(response => response.json())
     .then(function(data) {
-            SummonerTier(data.summoner_tier, data.summoner_rank);
-            SummonerTierLp(data.summoner_league_point);
-            
+        return data;
     })
     .catch(error =>  console.log(error)); 
+
+    SummonerTier(LeagueData.summoner_tier, LeagueData.summoner_rank);
+    SummonerTierLp(LeagueData.summoner_league_point);
 }
 
 async function GetChampionData() {
-    await fetch('https://www.dlord.shop:8081/champion', {
+    const ChampionData = await fetch('https://www.dlord.shop:8081/champion', {
         method: 'GET',
         headers: {'Content-Type': 'application/json'},
 
     })
     .then(response => response.json())
     .then(function(data) {
-            champion = Object.values(data);
+        return Object.values(data);
     })
     .catch(error =>  console.log(error)); 
+
+    champion = ChampionData;
+
 }
-
 async function GetRuneData() {
-    await fetch('https://www.dlord.shop:8081/rune', {
+    const Runedata = await fetch('https://www.dlord.shop:8081/rune', {
         method: 'GET',
         headers: {'Content-Type': 'application/json'},
 
     })
     .then(response => response.json())
     .then(function(data) {
-            runes = data;
+        return data;
     })
-    .catch(error =>  console.log(error)); 
+    .catch(error =>  console.log(error));
+
+    runes = Runedata;
 }
 
 window.onload = function() {
