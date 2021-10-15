@@ -1,9 +1,9 @@
 const axios = require('axios');
 const dotenv = require('dotenv');
 dotenv.config();
-module.exports = async function (req, res, next) {
+module.exports = function (req, res, next) {
     const summoner = req.body.summoner;
-    await axios.get(`https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${encodeURIComponent(summoner)}?api_key=${process.env.API_KEY}`)
+    axios.get(`https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${encodeURIComponent(summoner)}?api_key=${process.env.API_KEY}`)
         .then(function (response) {
             req.id = response.data.name;
             req.profile = response.data.profileIconId;

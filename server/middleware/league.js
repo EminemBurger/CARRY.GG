@@ -1,9 +1,9 @@
 const axios = require('axios');
 const dotenv = require('dotenv');
 dotenv.config();
-module.exports = async function (req, res, next) {
+module.exports = function (req, res, next) {
     const encrypted_id = req.body.encrypted_id;
-    await axios.get(`https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/${encrypted_id}?api_key=${process.env.API_KEY}`)
+    axios.get(`https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/${encrypted_id}?api_key=${process.env.API_KEY}`)
     .then(function (response) {
         req.tier = response.data[0].tier;
         req.rank = response.data[0].rank;

@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 
-router.get('/', async(req, res) => {
-    await axios.get('https://ddragon.leagueoflegends.com/cdn/10.6.1/data/ko_KR/runesReforged.json')
+router.get('/', (req, res) => {
+    axios.get('https://ddragon.leagueoflegends.com/cdn/10.6.1/data/ko_KR/runesReforged.json')
     .then(function(response) {
         const runes = response.data;
         const runes_map = {};

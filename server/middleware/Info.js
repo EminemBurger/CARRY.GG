@@ -1,10 +1,10 @@
 const axios = require('axios');
 const dotenv = require('dotenv');
 dotenv.config();
-module.exports = async function (req, res, next) {
+module.exports = function (req, res, next) {
     const match_id = req.body.match_id;
     const summoner_name = req.body.summoner;
-    await axios.get(`https://asia.api.riotgames.com/lol/match/v5/matches/${match_id}?api_key=${process.env.API_KEY}`)
+    axios.get(`https://asia.api.riotgames.com/lol/match/v5/matches/${match_id}?api_key=${process.env.API_KEY}`)
     .then(function (response) {
         const summoner = response.data.info.participants.find(participant => participant.summonerName === summoner_name);
         const team_summoners1 = [];
