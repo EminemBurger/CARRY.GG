@@ -2,17 +2,15 @@ const axios = require('axios');
 module.exports = async function (req, res, next) {
     const match_id = req.body.match_id;
     const summoner_name = req.body.summoner;
-    await axios.get(`https://kr.api.riotgames.com/lol/match/v4/matches/${match_id}?api_key=RGAPI-9f27324a-231a-49f0-aeff-f609a8f4e6d3`)
+    await axios.get(`https://asia.api.riotgames.com/lol/match/v5/matches/${match_id}?api_key=RGAPI-202a503c-9a91-4e42-a6a7-9c54855a49b3`)
     .then(function (response) {
-        const summoner = response.data.participantIdentities.find(participant => participant.player.summonerName === summoner_name);
+        const summoner = response.data.info.participants.find(participant => participant.summonerName === summoner_name);
         const team_summoners1 = [];
         const team_summoners2 = [];
-        response.data.participantIdentities.forEach((item) => {
-            const summoner_id = item.participantId;
-            const summoner_name = item.player.summonerName;
-            const find_summoner =response.data.participants.find(participant => participant.participantId === summoner_id);
-            const team_id = find_summoner.teamId;
-            const champion_id = find_summoner.championId;
+        response.data.info.participants.forEach((item) => {
+            const summoner_name = item.summonerName;
+            const team_id = item.teamId;
+            const champion_id = item.championId;
             const team_member = {
                 name: summoner_name,
                 championId: champion_id,
@@ -26,9 +24,10 @@ module.exports = async function (req, res, next) {
         })
         req.team1 = team_summoners1;
         req.team2 = team_summoners2;
-        req.participant = summoner;
-        req.participants_info = response.data.participants.find(participant => participant.participantId === summoner.participantId);
-        req.gameDuration = response.data.gameDuration;
+        req.participants_info = summoner;
+        req.gameDuration = response.data.info.gameDuration;
+        req.queueId = response.data.info.queueId;
+        req.time = response.data.info.gameStartTimestamp;
         next();
     })
     .catch(function (error) {

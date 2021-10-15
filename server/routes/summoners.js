@@ -12,7 +12,8 @@ router.post('/profile', summoner, async (req, res) => {
         summoner_profile : wait.profile,
         summoner_en_id: wait.encrypted_id,
         summoner_level : wait.summonerLevel,
-        summoner_ac_id: wait.account_id
+        summoner_ac_id: wait.account_id,
+        summoner_puuid : wait.puuid
     }
     res.json(summoner);
 });
@@ -41,11 +42,12 @@ router.post('/match', match, async (req, res) => {
 router.post('/info', info , async (req, res) => {
     const wait = await req;
     const match = {
-        summoner : wait.participant,
         participants_info : wait.participants_info,
         gameDuration : wait.gameDuration,
         team1 : wait.team1,
-        team2 : wait.team2
+        team2 : wait.team2,
+        queueId : wait.queueId,
+        time: wait.time
     }
     res.json(match);
 });

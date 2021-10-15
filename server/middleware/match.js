@@ -1,15 +1,9 @@
 const axios = require('axios');
 module.exports = async function (req, res, next) {
-    const encrypted_id = req.body.encrypted_id;
-    await axios.get(`https://kr.api.riotgames.com/lol/match/v4/matchlists/by-account/${encrypted_id}?api_key=RGAPI-9f27324a-231a-49f0-aeff-f609a8f4e6d3`)
+    const puuid = req.body.puuid;
+    await axios.get(`https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=1&count=20&api_key=RGAPI-202a503c-9a91-4e42-a6a7-9c54855a49b3`)
     .then(function (response) {
-        let matches = response.data.matches;
-        matches.forEach((item) => {
-            delete item.season;
-            delete item.lane;
-            delete item.role;
-            delete item.platformId;
-        });
+        let matches = response.data;
         req.matches = matches;
         next();
     })

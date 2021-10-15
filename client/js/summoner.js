@@ -57,7 +57,7 @@ function SummonerProfile(data) {
 
 function SummonerTier(tier, rank) {
     const tier_div = document.querySelector(".section-1-rank-emblem");
-    tier_div.style.background = `url(http://carrygg-env-1.eba-e26mm6jp.ap-northeast-2.elasticbeanstalk.com/asset/ranked-emblems/Emblem_${tier}.png) center center / cover`;
+    tier_div.style.background = `url(../asset/ranked-emblems/Emblem_${tier}.png) center center / cover`;
     const rank_tier = document.querySelector(".section-1-rank-tier");
     rank_tier.innerHTML = tier + " " + rank;
 }
@@ -73,15 +73,15 @@ function SummonerTierLp(data) {
 }
 
 
-function MakeMatches(data) {
+function MakeMatches() {
     const Matches_div = document.querySelector('.section-2');
     for (var i = startindex; i < startindex+10; i++) {
         const HtmlStr = `<div class='section-2-match'> \
         <div class='section-2-match-queue'>\
-            <p class='section-2-match-queue-gametype'>${queue_type[data[i].queue]}</p>\
+            <p class='section-2-match-queue-gametype gametype--${i}'></p>\
             <p class='section-2-match-queue-gameduration gameduration--${i}'></p> \
             <p class='section-2-match-queue-wins wins--${i}'></p> \
-            <p class='section-2-match-queue-time'>${Unix_timestamp(data[i].timestamp)}</p>\
+            <p class='section-2-match-queue-time time--${i}'></p>\
         </div> \
         <div class='section-2-champion'> \
             <span class='champion--${i}'></span>
@@ -315,6 +315,17 @@ function DisplayTeam(team1, team2, idx) {
         NameDiv.innerHTML = name;
     }
 }
+
+function DisplayGameType(data, idx) {  
+    const queueDIv = document.querySelector(`.gametype--${idx}`);
+    queueDIv.innerHTML = queue_type[data];
+}
+
+function DisplayTimeStamp(data, idx) {
+    const timeDiv = document.querySelector(`.time--${idx}`);
+    timeDiv.innerHTML = Unix_timestamp(data);
+}
+
 /*
 function MakeMatchButton() {
     const button = document.createElement('button');
@@ -328,25 +339,25 @@ function MakeMatchButton() {
     container.appendChild(button);
 }*/
 
-async function GetMatchData(data) {
-    await fetch('http://carrygg-env-1.eba-e26mm6jp.ap-northeast-2.elasticbeanstalk.com:8081/summoner/match', {
+function GetMatchData(data) {
+    fetch('http://localhost:4000/summoner/match', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
-            "encrypted_id": data
+            "puuid": data
         })  
     })
     .then(response => response.json())
     .then(function(data) {
         MakeMatches(data.summoner_matches);
         for (var i = startindex; i < startindex+10; i++)
-            GetGameData(data.summoner_matches[i].gameId, i);
+            GetGameData(data.summoner_matches[i], i);
     })
     .catch(error =>  console.log(error)); 
 }
 
-async function GetGameData(data, idx) {
-    await fetch('http://carrygg-env-1.eba-e26mm6jp.ap-northeast-2.elasticbeanstalk.com:8081/summoner/info', {
+function GetGameData(data, idx) {
+    fetch('http://localhost:4000/summoner/info', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -356,24 +367,26 @@ async function GetGameData(data, idx) {
     })
     .then(response => response.json())
     .then(function(data) {
-        const about_summoner = data.participants_info.stats;
+        const about_summoner = data.participants_info;
         DisplayTeam(data.team1, data.team2, idx);
         DisplayItems(about_summoner.item0, about_summoner.item1, about_summoner.item2, about_summoner.item3, about_summoner.item4, about_summoner.item5, idx);
         DisplayMultiKill(about_summoner.largestMultiKill, idx);
         DisplayLvCs(about_summoner.champLevel, about_summoner.totalMinionsKilled , data.gameDuration ,idx);
         DisplayKda(about_summoner.kills, about_summoner.deaths, about_summoner.assists, idx);
-        DisplayRune(about_summoner.perk0, about_summoner.perkSubStyle, idx);
-        DisplaySpell(data.participants_info.spell1Id, data.participants_info.spell2Id, idx);
-        DisplayChampion(data.participants_info.championId, idx);
+        DisplayRune(about_summoner.perks.styles[0].selections[0].perk , about_summoner.perks.styles[1].style , idx);
+        DisplaySpell(about_summoner.summoner1Id, about_summoner.summoner2Id, idx);
+        DisplayChampion(about_summoner.championId, idx);
         DisplayGameDuration(data.gameDuration, idx);
-        DisplayWins(data.participants_info.stats.win, idx);
+        DisplayWins(about_summoner.win, idx);
+        DisplayGameType(data.queueId, idx);
+        DisplayTimeStamp(data.time, idx);
         startindex += 10;
     })
     .catch(error =>  console.log(error)); 
 }
 
-async function GetSummonerData() {
-    await fetch('http://carrygg-env-1.eba-e26mm6jp.ap-northeast-2.elasticbeanstalk.com:8081/summoner/profile', {
+function GetSummonerData() {
+    fetch('http://localhost:4000/summoner/profile', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -383,7 +396,7 @@ async function GetSummonerData() {
     .then(response => response.json())
     .then(function(data) {
             GetLeagueData(data.summoner_en_id);
-            GetMatchData(data.summoner_ac_id);
+            GetMatchData(data.summoner_puuid);
             SummonerName(data.summoner_name);
             SummonerProfile(data.summoner_profile);
             SummonerLevel(data.summoner_level);
@@ -391,8 +404,8 @@ async function GetSummonerData() {
     .catch(error =>  console.log(error)); 
 }
 
-async function GetLeagueData(data) {
-    await fetch('http://carrygg-env-1.eba-e26mm6jp.ap-northeast-2.elasticbeanstalk.com:8081/summoner/league', {
+function GetLeagueData(data) {
+    fetch('http://localhost:4000/summoner/league', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -408,8 +421,8 @@ async function GetLeagueData(data) {
     .catch(error =>  console.log(error)); 
 }
 
-async function GetChampionData() {
-    await fetch('http://carrygg-env-1.eba-e26mm6jp.ap-northeast-2.elasticbeanstalk.com:8081/champion', {
+function GetChampionData() {
+    fetch('http://localhost:4000/champion', {
         method: 'GET',
         headers: {'Content-Type': 'application/json'},
 
@@ -421,8 +434,8 @@ async function GetChampionData() {
     .catch(error =>  console.log(error)); 
 }
 
-async function GetRuneData() {
-    await fetch('http://carrygg-env-1.eba-e26mm6jp.ap-northeast-2.elasticbeanstalk.com:8081/rune', {
+function GetRuneData() {
+    fetch('http://localhost:4000/rune', {
         method: 'GET',
         headers: {'Content-Type': 'application/json'},
 

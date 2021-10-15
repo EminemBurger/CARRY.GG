@@ -1,11 +1,12 @@
 const axios = require('axios');
 module.exports = async function (req, res, next) {
     const summoner = req.body.summoner;
-    await axios.get(`https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${encodeURIComponent(summoner)}?api_key=RGAPI-9f27324a-231a-49f0-aeff-f609a8f4e6d3`)
+    await axios.get(`https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${encodeURIComponent(summoner)}?api_key=RGAPI-202a503c-9a91-4e42-a6a7-9c54855a49b3`)
         .then(function (response) {
             req.id = response.data.name;
             req.profile = response.data.profileIconId;
             req.encrypted_id = response.data.id;
+            req.puuid = response.data.puuid;
             req.account_id = response.data.accountId;
             req.summonerLevel = response.data.summonerLevel;
             next();
