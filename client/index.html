@@ -4,15 +4,35 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" id="changestyle">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
   <title>CARRY.GG</title>
-  <script type="module" src="./js/script.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+
 </head>
 <body>
-
+        <!-- Navbar  --> 
+        <nav class='navbar target'> 
+          <a href = "/" class='navbar-link' data-link>
+              <span>홈페이지</span> 
+          </a> 
+          <a href = "/champions" class='navbar-link' data-link> 
+              <span>챔피언</span> 
+          </a>
+            
+      </nav>
+      <div class='menu target'> 
+        <div class='line line-1'></div> 
+        <div class='line line-2'></div> 
+        <div class='line line-3'></div> 
+      </div>  
+      
+      <!-- End of Navbar  --> 
+      <div class='container'> 
+      </div>
+      <script type="module" src="./js/router.js"></script>
 </body>
 
 </html>

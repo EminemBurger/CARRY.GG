@@ -25,7 +25,11 @@ MATCH-V4에 /lol/match/v4/matches/{matchId} 요청으로 가져온 gameid를 par
 
 아이템 역시 마찬가지
 
+https://shyunku.tistory.com/56 룬페이지 구현
 
+===================================================================================
+
+최근 api가 업데이트 되면서 사용법이 변경되었다
 
 
 
@@ -33,7 +37,11 @@ SUMMONER-V4에서 /lol/summoner/v4/summoners/by-name/{summonerName} 요청으로
 
 /lol/league/v4/entries/by-summoner/{encryptedSummonerId} 요청으로 티어, 승패, 리그 포인트, 소속되어있는 리그를 가져오자
 
+MATCH-V4가 없어지고 MATCH-V5 /lol/match/v5/matches/by-puuid/{puuid}/ids에 요청을 보내야 한다 
+
+SUMMONER-V4에서 가져온 puuid를 param로 넣는다
+
+match id들을 가져오면 /lol/match/v5/matches/{matchId} param로 넣어 매치와 관련된 데이터들을 가져온다
 
 
-https://shyunku.tistory.com/56 룬페이지 구현
 

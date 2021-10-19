@@ -4,9 +4,12 @@ const path = require('path');
 
 app.use(express.static(path.join(__dirname, '/')));
 
-app.get('/', function(req,res) {
-	res.sendFile(__dirname, + '/index.html');
+
+app.get("/*", (req,res) => {
+	res.sendFile(path.resolve(__dirname,  "index.html"));
 });
+
+
 
 const port = process.env.client_port || 3000;
 
